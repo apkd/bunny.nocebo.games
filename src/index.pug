@@ -1,0 +1,281 @@
+doctype html
+html(lang="en")
+
+    head
+
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+        meta(name="description", content="Bunny Game is a challenging survival game focused on cooperation.")
+        meta(name="author", content="Nocebo")
+
+        title Bunny Game
+
+        meta(property="og:url" content="https://bunny.nocebo.games/")
+        meta(property="og:image" content="https://bunny.nocebo.games/share.png")
+        meta(property="og:title" content="Bunny Game")
+        meta(property="og:description" content="Bunny Game is a challenging survival game focused on cooperation.")
+        meta(property="og:image:type" content="image/png")
+        meta(property="og:image:width" content="1200")
+        meta(property="og:image:height" content="630")
+
+        meta(name='msapplication-TileColor' content='#000000')
+        meta(name='theme-color' content='#000000')
+        link(rel='apple-touch-icon' sizes='120x120' href='/apple-touch-icon.png')
+        link(rel="icon", type="image/x-icon", href="assets/favicon.ico")
+        link(rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png')
+        link(rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png')
+        link(rel='manifest' href='/site.webmanifest')
+        link(rel='mask-icon' href='/safari-pinned-tab.svg' color='#000000')
+
+        link(href="bundle.min.css", rel="stylesheet")
+        script(src="site.min.js" defer)
+        noscript
+            style
+                //- play animation immediately if javascript is not supported
+                | .animate-logo { animation-play-state: running }
+                //- hide discord applet when javascript is not supported
+                | .discord-wrapper { display: none }
+
+    body
+
+        .navbar-shrink.d-none //- make class visible to purgecss
+
+        // -----------------------------------------
+        nav#mainNav.navbar.navbar-expand.navbar-black.fixed-top.d-print-none
+            .container.px-4.px-lg-5
+                a.navbar-brand(href="#" aria-label="Go back to top") 
+                    include svg/logo-navbar.pug
+                #navbarResponsive.collapse.navbar-collapse
+                    ul.navbar-nav.ms-auto
+                        li.nav-item.d-none.d-lg-block
+                            a.nav-link(href="#") Hello there
+                        li.nav-item.d-none.d-md-block
+                            a.nav-link(href="#projects") Sweet gifs
+                        li.nav-item.d-none.d-md-block
+                            a.nav-link(href="#newsletter") Get updates
+                        li.nav-item
+                            a.nav-link(href="#steam") Steam
+
+        // -----------------------------------------
+        header.masthead
+            .container.px-4.px-lg-5.d-flex.h-100.align-items-center.justify-content-center
+                .d-flex.justify-content-center
+                    .text-center
+                        include svg/logo.pug
+
+        // -----------------------------------------
+        section#about.about-section.text-center.pt-0
+            .container.px-0.px-sm-2.px-md-4.px-lg-5
+                .row.gx-4.gx-lg-5.justify-content-center
+                    .col-lg-8
+                        h1.h2.text-white.mb-5 Bunny Game is in development.
+                        p.text-white
+                            include svg/icon-steam.pug
+                        strong.text-white Add Bunny Game to your wishlist!
+                .row.gx-4.gx-lg-5.justify-content-center
+                    .col-lg-8.mt-4
+                        iframe(src="https://store.steampowered.com/widget/2180890/" title="Steam Store Embed" loading="lazy" frameborder="0" width="646" height="190" style="max-width: 100%")
+
+        // -----------------------------------------
+        section#projects.projects-section.bg-dark
+            .container.px-0.px-sm-2.px-md-4.px-lg-5
+            
+                noscript
+                    style
+                        | video.lazy { display:none }
+
+                mixin video(url, thumbnail, style)
+                    video.video-responsive.lazy.bg-dark.mb-3.mb-lg-0(autoplay playsinline muted loop onclick="this.paused ? this.play() : this.pause();" poster=thumbnail, style=style)
+                        source(data-src=url type="video/webm")
+                        |  Sorry, the video didn't work in your browser. No problem - <a href="https://discord.gg/YWdcvQwNur">join us on Discord</a> to see all kinds of sneak peaks!
+                    noscript
+                        video.video-responsive.bg-dark.mb-3.mb-lg-0(autoplay playsinline muted loop poster=thumbnail, style=style)
+                            source(src=url type="video/webm")
+                            |  Sorry, the video didn't work in your browser. No problem - <a href="https://discord.gg/YWdcvQwNur">join us on Discord</a> to see all kinds of sneak peaks!
+
+                .row.gx-0.mb-4.mb-lg-10.align-items-center
+                    .col-xl-8.col-lg-7
+                        +video("/webm/trailer.webm", "/webm/trailer.webp", "object-position: center")
+                    .col-xl-4.col-lg-5
+                        .featured-text.text-center.text-lg-left
+                            h1.h4.text-white.mb-3
+                                strong  GOT CARROTS?
+                                include svg/icon-carrot.pug
+                            p.text-white
+                                strong Bunny Game is a challenging survival game focused on cooperation.
+                            p.text-white.text-opacity-75
+                                |  Get together with friends and work as a team to last as long as possible and collect resources to prepare for winter. 
+                            p.text-white.text-opacity-75
+                                |  You have to use your wit, creativity, and logic to survive this dangerous world. 
+                                |  It's an intense, fun experience that will keep you coming back for more!
+
+                .row.gx-0.mb-sm-5.mb-lg-0.justify-content-center
+                    .col-lg-6
+                        +video("/webm/h1.webm", "/webm/h1.webp", "object-position: left")
+                    .col-lg-6
+                        .bg-black.text-center.h-100.project
+                            .d-flex.h-100
+                                .project-text.w-100.my-auto.text-center.text-lg-left
+                                    h1.h4.text-white
+                                        strong  ONLINE 4-PLAYER CO-OP
+                                    p.mb-0.text-white
+                                        strong  Play online with friends or on your own if you're feeling shy.
+                                        .text-white.text-opacity-75
+                                            |  The more, the merrier! Work together to overcome obstacles and gather resources.
+                                            |  The difficulty of the challenges you encounter is scaled to the number of players.
+
+                .row.gx-0.justify-content-center
+                    .col-lg-6
+                        +video("/webm/1.webm", "/webm/1.webp", "object-position: center")
+                    .col-lg-6.order-lg-first
+                        .bg-black.text-center.h-100.project
+                            .d-flex.h-100
+                                .project-text.w-100.my-auto.text-center.text-lg-right
+                                    h1.h4.text-white
+                                        strong  THINK AHEAD
+                                    p.mb-0.text-white
+                                        strong  You'll need to work together if you want to survive past winter.
+                                        .text-white.text-opacity-75  Prepare by collecting resources and bringing them to your home burrow.
+
+                .row.gx-0.mb-sm-5.mb-lg-0.justify-content-center
+                    .col-lg-6
+                        +video("/webm/h2.webm", "/webm/h2.webp", "object-position: right")
+                    .col-lg-6
+                        .bg-black.text-center.h-100.project
+                            .d-flex.h-100
+                                .project-text.w-100.my-auto.text-center.text-lg-right
+                                    h1.h4.text-white
+                                        strong  PREPARE CAREFULLY
+                                    p.mb-0.text-white
+                                        strong  Challenges lie ahead - move carefully and work together to survive.
+                                        .text-white.text-opacity-75
+                                            |  Spend the resources you gathered to unlock tools and upgrades which will make your job easier.
+                                            |  Unlock new maps and areas for you and your friends to explore.
+
+                .row.gx-0.justify-content-center
+                    .col-lg-6
+                        +video("/webm/2.webm", "/webm/2.webp", "object-position: center")
+                    .col-lg-6.order-lg-first
+                        .bg-black.text-center.h-100.project
+                            .d-flex.h-100
+                                .project-text.w-100.my-auto.text-center.text-lg-left
+                                    h1.h4.text-white
+                                        strong  DON'T GET CAUGHT
+                                    p.mb-0.text-white
+                                        strong  The locals don't take kindly to carrot-stealing visitors.
+                                        .text-white.text-opacity-75
+                                            |  Sneak around using burrows and thick vegetation.
+                                            |  Move swiftly under the cover of night.
+
+                .row.gx-0.mb-sm-5.mb-lg-0.justify-content-center
+                    .col-lg-6
+                        +video("/webm/h3.webm", "/webm/h3.webp", "object-position: left")
+                    .col-lg-6
+                        .bg-black.text-center.h-100.project
+                            .d-flex.h-100
+                                .project-text.w-100.my-auto.text-center.text-lg-right
+                                    h1.h4.text-white
+                                        strong  WINTER IS COMING
+                                    p.mb-0.text-white
+                                        strong  Cold slows you down and makes you vulnerable.
+                                        .text-white.text-opacity-75  Stay warm!
+
+                .row.gx-0.justify-content-center
+                    .col-lg-6
+                        +video("/webm/4.webm", "/webm/4.webp", "object-position: center")
+                    .col-lg-6.order-lg-first
+                        .bg-black.text-center.h-100.project
+                            .d-flex.h-100
+                                .project-text.w-100.my-auto.text-center.text-lg-left
+                                    h1.h4.text-white
+                                        strong  TIME AND WEATHER
+                                    p.mb-0.text-white
+                                        strong  Prepare and survive against dangerous weather changes!
+                                        .text-white.text-opacity-75  Mind the time and don't get lost at night!
+
+
+        //-
+            // -----------------------------------------
+            section.text-center.bg-dark
+                .container.px-4.px-lg-5(style="padding-bottom:150px")
+                    .row.gx-4.gx-lg-5.justify-content-center
+                        .col-lg-8
+                            h1.h2.text-white.mb-4 Lorem ipsum
+                            p.text-white.text-opacity-75
+                                |  Lorem ipsum<br>
+                                |  Lorem ipsum
+                            p.text-white.text-opacity-75
+                                |  Lorem ipsum<br>
+                                |  Lorem ipsum
+
+        // -----------------------------------------
+        section#newsletter.signup-section
+            .container.px-0.px-sm-2.px-md-4.px-lg-5
+                .row.gx-4.gx-lg-5
+                    .col-md-10.col-lg-8.mx-auto.text-center
+                        h2.bg-highlight.text-white.mb-3.py-2
+                            |  Join the mailing list
+                            include svg/icon-plane.pug
+                        .bg-highlight.text-white.pt-2
+                            strong We'll send you milestone updates.
+                        .bg-highlight.text-white.text-opacity-75.pb-2
+                            | No spam, ever. You can always easily unsubscribe.
+
+                        form.form-signup.mt-5.needs-validation(method="post" action="https://newsletter.nocebo.games/subscription/form")
+                            .row
+                                .col
+                                    input.form-control(type="email", name="email", placeholder="Enter email address...", aria-label="Enter email address...")
+                                .col-auto
+                                    button.btn.btn-primary(type="submit" formtarget="_blank") Confirm
+
+                            input(type="hidden" name="name" value="anon (nocebo.games)")
+                            input(type="hidden" name="l" value="dcba7d9b-e219-4a2f-a2e3-5bc65f019f00")
+
+        // -----------------------------------------
+        section#dungeon.contact-section.bg-dark
+            .container.px-4.px-lg-5
+                .row.gx-4.gx-lg-5
+                    .col-md-10.col-lg-8.mx-auto.text-center
+                        h2.text-white.mb-3
+                            |  Join our discord
+                            include svg/icon-discord.pug
+                        .text-white
+                            strong Join us at our server and watch the carrots grow.
+                        .text-white.text-opacity-75.mb-5
+                            | Coming soon: unique discord-based RPG games, community events, giveaways and more.
+                .row.gx-4.gx-lg-5.d-print-none#discord-parent
+                    .col-md-2.col-sm-1.mb-5.d-none.d-sm-block
+                    .col-md-8.col-sm-10.mb-5.discord-wrapper
+                        .discord-wrapper
+                            iframe.discord#discord(title="Discord Embed" src="" loading="lazy" referrerpolicy="no-referrer")
+                .row.gx-4.gx-lg-5.d-print-none
+                    .text-center
+                        a.btn.btn-primary(href="https://discord.gg/YWdcvQwNur")
+                            include svg/icon-discord.pug
+                            |  Open in Discord
+
+        section#steam.contact-section.bg-dark.text-center
+            .container.px-4.px-lg-5
+                .row.gx-4.gx-lg-5.justify-content-center
+                    .col-lg-8
+                        h1.h2.text-white.mb-2
+                            | Steam
+                            include svg/icon-steam.pug
+                        strong.text-white Add Bunny Game to your wishlist!
+                        p.text-white.text-opacity-75 It's the easiest way to find out when the game is released.
+                .row.gx-4.gx-lg-5.justify-content-center
+                    .col-lg-8.mt-4.mb-4
+                        iframe(src="https://store.steampowered.com/widget/2180890/" title="Steam Store Embed" loading="lazy" frameborder="0" width="646" height="190" style="max-width: 100%")
+                .row.gx-4.gx-lg-5.d-print-none
+                    .text-center
+                        a.btn.btn-primary(href="https://store.steampowered.com/app/2180890/Bunny_Game/")
+                            include svg/icon-steam.pug
+                            |  Open on Steam Store
+
+        footer.footer.bg-dark.small.text-center.text-white.text-opacity-50
+            .container.px-0.px-sm-2.px-md-4.px-lg-5
+                | No personally identifiable data collected or shared. 
+
+        script(data-goatcounter="https://bunny.goatcounter.nocebo.games/count" defer src="https://bunny.goatcounter.nocebo.games/count.js")
+        noscript
+            img(src="https://bunny.goatcounter.nocebo.games/count?p=/&t=Bunny%20Game" width=1 height=1)
